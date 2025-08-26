@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="mx-auto max-w-6xl min-h-[600px] flex items-center gap-12">
+    <div className="mx-auto max-w-6xl min-h-[600px] flex flex-col lg:flex-row items-center gap-12">
       <div className="flex flex-col basis-1/2">
         <CText weight="bold" classStyles="mb-4">
           GUNNA TYPE BEAT
@@ -16,7 +16,7 @@ export default function Hero() {
         <CText as="p" size="lg">
           Stop guessing. Start stealing REAL data from REAL songs
         </CText>
-        <Button className="mt-4" variant={"default"} asChild>
+        <Button className="mt-8" variant={"default"} asChild>
           <Link href={"/albums"}>Go to Albums</Link>
         </Button>
       </div>

@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${poppins.variable} `}>
+      <body className={`${poppins.variable} px-6 xl:px-0`}>
         <Header />
         {children}
       </body>
