@@ -1,20 +1,20 @@
 import { cn } from "@/lib/utils";
+
+import { ReactNode } from "react";
 import {
   CTextAs,
   CTextColors,
   CTextSize,
   CFontWeights,
   CFontFamily,
-} from "@/types/text.types";
+} from "./text.types";
 import {
   getDefaultTextStyles,
-  getFontFamily,
-  getFontWeights,
   getTextColor,
   getTextSize,
-} from "@/utils/text.utils";
-
-import { ReactNode } from "react";
+  getFontWeights,
+  getFontFamily,
+} from "./text.utils";
 
 export type CTextProps = {
   as?: CTextAs;

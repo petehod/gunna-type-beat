@@ -1,5 +1,7 @@
 import CText from "@/components/Dumb/Text/CText";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -14,6 +16,9 @@ export default function Hero() {
         <CText as="p" size="lg">
           Stop guessing. Start stealing REAL data from REAL songs
         </CText>
+        <Button className="mt-4" variant={"default"} asChild>
+          <Link href={"/albums"}>Go to Albums</Link>
+        </Button>
       </div>
       <div className="basis-1/2 ">
         <Image
