@@ -6,6 +6,8 @@ import {
   doc,
   getDoc,
   getDocs,
+  limit,
+  query,
   updateDoc,
 } from "firebase/firestore";
 import { AsyncResult, createError, createSuccess } from "@/utils/result.utils";
@@ -57,12 +59,13 @@ export const CRUDService = <T>({
         });
       }
     },
-    readAll: async (): AsyncResult<
-      z.infer<typeof zodValidator>[],
-      FirestoreErrorMessage
-    > => {
+    readAll: async ({
+      docLimit,
+    }: {
+      docLimit: number;
+    }): AsyncResult<z.infer<typeof zodValidator>[], FirestoreErrorMessage> => {
       try {
-        const docRef = collection(db, collectionName);
+        const docRef = query(collection(db, collectionName), limit(docLimit));
 
         const querySnapshot = await getDocs(docRef);
 

@@ -1,28 +1,34 @@
 import CText from "@/components/Dumb/Text/CText";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
 import Link from "next/link";
-import { testAlbums } from "./helpers";
+import { getAlbums } from "@/actions/albums";
+import FirebaseImage from "@/components/Dumb/Image/FirebaseImage";
 
-export default function Albums() {
+export default async function Albums() {
+  const albumsRes = await getAlbums();
+  if (!albumsRes.success) return <div>Error</div>;
+  const albums = albumsRes.value;
+
   return (
-    <div className="h-full items-center justify-center flex mx-auto max-w-6xl">
+    <div className="h-full items-center justify-center flex mx-auto max-w-6xl py-12">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
-        {testAlbums.map((album) => (
-          <Link href={`/albums/${album.id}`} key={album.id}>
+        {albums.map((album) => (
+          <Link
+            href={`/albums/${album.id}`}
+            key={album.id}
+            className="hover:scale-102 hover:opacity-80 transition-all duration-300"
+          >
             <Card className="w-auto flex items-center">
               <CardContent>
-                <Image
-                  src={album.photo}
+                <FirebaseImage
+                  className="rounded"
+                  filePath={album.artworkPath ?? ""}
                   alt="alt"
-                  height={1000}
-                  width={1000}
-                  className="max-w-[15rem] rounded mb-4"
                 />
-                <CardTitle className="text-2xl text-center">
-                  {album.name}
+                <CardTitle className="text-2xl text-center mt-4">
+                  {album.title}
                 </CardTitle>
-                <CText classStyles="text-center">{album.artist}</CText>
+                <CText classStyles="text-center">{album.artistIds}</CText>
               </CardContent>
             </Card>
           </Link>
