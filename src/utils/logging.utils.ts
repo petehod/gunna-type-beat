@@ -1,14 +1,4 @@
-export type Modules =
-  | "WaitlistService"
-  | "ProfileService"
-  | "ResendService"
-  | "StripeService"
-  | "StripeWebhooks"
-  | "StripeBridge"
-  | "CRUDService"
-  | "AuthService"
-  | "OmnisendService"
-  | "OmnisendBridge";
+export type Modules = "DB";
 
 type Message = string | object | unknown;
 
