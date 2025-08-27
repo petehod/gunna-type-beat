@@ -1,20 +1,18 @@
+import { getAlbum } from "@/actions/albums";
 import SongsTable from "@/components/Dumb/Table/SongsTable";
-import CText from "@/components/Dumb/Text/CText";
 import AlbumHero from "@/components/Screens/Albums/[id]/AlbumHero";
 import { Button } from "@/components/ui/button";
-import { Album } from "@/validators/album.validator";
-import Image from "next/image";
 import Link from "next/link";
 
-export default function IndividualAlbum() {
-  const album: Album = {
-    artistIds: ["1234"],
-    artworkPath: "",
-    id: "1",
-    songIds: [""],
-    title: "Won of Wun",
-    artworkURL: "/assets/images/gunna.jpg",
-  };
+export default async function IndividualAlbum({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const { id } = params;
+  const albumRes = await getAlbum(id);
+  if (!albumRes.success) return <div>Error</div>;
+  const album = albumRes.value;
 
   const artists = ["Gunna", "Roddy Rhicch"];
   return (
@@ -26,7 +24,7 @@ export default function IndividualAlbum() {
       </div>
       <AlbumHero
         artists={artists}
-        src={album.artworkURL ?? ""}
+        src={album.artworkPath ?? ""}
         title={album.title}
       />
 

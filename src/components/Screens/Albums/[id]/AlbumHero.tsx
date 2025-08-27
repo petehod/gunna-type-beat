@@ -1,6 +1,5 @@
 import CText from "@/components/Dumb/Text/CText";
-
-import Image from "next/image";
+import FirebaseImage from "@/components/Dumb/Image/FirebaseImage";
 
 type Props = {
   src: string;
@@ -10,12 +9,10 @@ type Props = {
 export default function AlbumHero({ src, title, artists }: Props) {
   return (
     <section className="mb-12">
-      <Image
-        src={src}
-        alt={`Album artwork for ${title}`}
-        height={1000}
-        width={1000}
-        className="h-[20rem] w-full lg:w-[20rem] object-contain rounded"
+      <FirebaseImage
+        className="rounded my-4 w-full md:w-[20rem] object-contain"
+        filePath={src}
+        alt="alt"
       />
       <CText as="h1">{title}</CText>
       <CText as="p" size="xl">
