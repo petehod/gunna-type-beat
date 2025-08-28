@@ -4,8 +4,8 @@ import BackButton from "@/components/Dumb/Button/BackButton";
 import SongsTableContainer from "@/components/Dumb/Table/SongsTableContainer";
 import AlbumHero from "@/components/Screens/Albums/[id]/AlbumHero";
 
-export const revalidate = 3600;
-export const dynamic = "force-dynamic";
+// export const revalidate = 3600;
+// export const dynamic = "force-dynamic";
 
 export default async function IndividualAlbum({
   params,

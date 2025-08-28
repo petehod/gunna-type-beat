@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Table,
   TableBody,
@@ -20,6 +21,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { Song } from "@/validators/song.validator";
 import { getYouTubeVideoId } from "@/utils/youtube.utils";
+import { useChordProgressionByIds } from "@/hooks/chord-progressions/useChordProgressions";
+import { formatChordProgression } from "@/utils/chord-progression.utils";
 
 export default function SongsTable({ songs }: { songs: Song[] }) {
   const [selectedSong, setSelectedSong] = useState<(typeof songs)[0] | null>(
@@ -31,6 +34,10 @@ export default function SongsTable({ songs }: { songs: Song[] }) {
     setSelectedSong(song);
     setIsDialogOpen(true);
   };
+
+  const progressions = useChordProgressionByIds(
+    songs.flatMap((song) => song.progressionIds)
+  );
 
   return (
     <>
@@ -55,8 +62,17 @@ export default function SongsTable({ songs }: { songs: Song[] }) {
               <TableCell className="font-medium">{song.name}</TableCell>
               <TableCell>{song.key}</TableCell>
               <TableCell>{song.tempo} BPM</TableCell>
-              <TableCell>{song.chords}</TableCell>
-              <TableCell>{song.chords}</TableCell>
+              <TableCell>{formatChordProgression(song.chords)}</TableCell>
+              <TableCell>
+                {progressions?.success &&
+                  progressions?.value
+                    ?.find((progression) =>
+                      song.progressionIds.includes(progression.id)
+                    )
+                    ?.numerals.split(",")
+                    .map((numeral) => numeral.trim())
+                    .join(", ")}
+              </TableCell>
               <TableCell>
                 <Link
                   href={song.youtubeURL}
@@ -131,19 +147,37 @@ export default function SongsTable({ songs }: { songs: Song[] }) {
               </div>
 
               {/* Chords */}
-              <div>
-                <h4 className="font-semibold text-sm text-gray-600 uppercase tracking-wide mb-2">
-                  Chords
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedSong.chords.split(",").map((chord, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
-                    >
-                      {chord.trim()}
-                    </span>
-                  ))}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <h4 className="font-semibold text-sm text-gray-600 uppercase tracking-wide mb-2">
+                    Chords
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedSong.chords.split(",").map((chord, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+                      >
+                        {chord.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-sm text-gray-600 uppercase tracking-wide mb-2">
+                    Numerals
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {progressions?.success &&
+                      progressions?.value
+                        ?.find((progression) =>
+                          selectedSong.progressionIds.includes(progression.id)
+                        )
+                        ?.numerals.split(",")
+                        .map((numeral) => (
+                          <span key={numeral}>{numeral.trim()}</span>
+                        ))}
+                  </div>
                 </div>
               </div>
 
