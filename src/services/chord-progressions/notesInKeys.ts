@@ -1,8 +1,27 @@
+export type KeyNames =
+  | "Ab"
+  | "A"
+  | "A#"
+  | "Bb"
+  | "B"
+  | "Cb"
+  | "C"
+  | "C#"
+  | "Db"
+  | "D"
+  | "D#"
+  | "Eb"
+  | "E"
+  | "F"
+  | "F#"
+  | "Gb"
+  | "G"
+  | "G#";
 /**
  * Interface with the key string and all the notes in that key
  */
 export interface KeyDefinition {
-  key: string;
+  key: KeyNames;
   notesInKey: string[];
 }
 

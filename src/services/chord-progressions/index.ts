@@ -1,5 +1,5 @@
 import { getChromaticChords } from "./returnChromaticChords.js";
-import { majorKeys, minorKeys } from "./notesInKeys.js";
+import { KeyNames, majorKeys, minorKeys } from "./notesInKeys.js";
 import { getNumeralInfo } from "./numeralMappings.js";
 import {
   ChordProgression,
@@ -32,4 +32,14 @@ export const generateProgressionsInAllKeys = (
     });
     return { key, numerals };
   });
+};
+
+export const getProgressionInSpecificKey = (
+  enteredChordProgression: ChordProgression,
+  key: KeyNames
+) => {
+  const progressionInAllKeys = generateProgressionsInAllKeys(
+    enteredChordProgression
+  );
+  return progressionInAllKeys.find((progression) => progression.key === key);
 };
