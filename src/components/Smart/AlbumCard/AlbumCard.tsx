@@ -14,13 +14,13 @@ export default async function AlbumCard({ album }: { album: Album }) {
       className="hover:scale-102 hover:opacity-80 transition-all duration-300"
     >
       <Card className="w-auto flex items-center">
-        <CardContent>
+        <CardContent className="w-full flex flex-col  items-center">
           <FirebaseImage
-            className="rounded"
+            className="rounded h-[200px] w-[full] object-cover"
             filePath={album.artworkPath}
             alt="alt"
           />
-          <CardTitle className="text-2xl text-center mt-4">
+          <CardTitle className="text-2xl text-center mt-4 truncate w-full">
             {album.title}
           </CardTitle>
           <CText classStyles="text-center">{artists.join(", ")}</CText>

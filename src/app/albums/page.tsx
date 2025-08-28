@@ -1,7 +1,7 @@
 import { getAlbums } from "@/actions/albums";
 import AlbumCard from "@/components/Smart/AlbumCard/AlbumCard";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const dynamic = "force-dynamic";
 
 export default async function Albums() {

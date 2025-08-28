@@ -1,19 +1,18 @@
 import { getAlbum } from "@/actions/albums";
 import { getAlbumArtists } from "@/actions/artists";
 import BackButton from "@/components/Dumb/Button/BackButton";
-import SongsTable from "@/components/Dumb/Table/SongsTable";
 import SongsTableContainer from "@/components/Dumb/Table/SongsTableContainer";
 import AlbumHero from "@/components/Screens/Albums/[id]/AlbumHero";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const dynamic = "force-dynamic";
 
 export default async function IndividualAlbum({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const { id } = params;
+  const { id } = await params;
   const albumRes = await getAlbum(id);
   if (!albumRes.success) return <div>Error</div>;
   const album = albumRes.value;
