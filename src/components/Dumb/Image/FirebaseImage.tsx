@@ -6,9 +6,10 @@ import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StorageService } from "@/services/firebase/storage.service";
 import { cn } from "@/lib/utils";
+import { IMAGE_NOT_FOUND } from "@/constants/image.constants";
 
 export type FirebaseImageProps = Partial<ImageProps> & {
-  filePath: string;
+  filePath?: string;
   alt: string;
 };
 
@@ -24,6 +25,7 @@ const FirebaseImage: React.FC<FirebaseImageProps> = ({
 
   useEffect(() => {
     const runEffect = async () => {
+      if (!filePath) return setImageURL(IMAGE_NOT_FOUND);
       try {
         const url = await StorageService.getFileURL(filePath);
         setImageURL(url ?? null);

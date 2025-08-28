@@ -1,8 +1,10 @@
 import { getAlbum } from "@/actions/albums";
+import BackButton from "@/components/Dumb/Button/BackButton";
 import SongsTable from "@/components/Dumb/Table/SongsTable";
 import AlbumHero from "@/components/Screens/Albums/[id]/AlbumHero";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+
+export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export default async function IndividualAlbum({
   params,
@@ -18,9 +20,7 @@ export default async function IndividualAlbum({
   return (
     <div className="mx-auto max-w-6xl">
       <div>
-        <Button asChild variant={"outline"}>
-          <Link href={"/albums"}>Back to Albums</Link>
-        </Button>
+        <BackButton />
       </div>
       <AlbumHero
         artists={artists}
