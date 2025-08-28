@@ -7,7 +7,7 @@ export const ArtistService = {
     return await Promise.all(
       ids.flatMap(async (id) => {
         const artist = await ArtistService.getArtist(id);
-        if (!artist.success) return [];
+        if (!artist.success) return "";
         return artist.value.name;
       })
     );

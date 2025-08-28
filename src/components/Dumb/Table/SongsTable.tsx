@@ -15,33 +15,19 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { SONGS } from "./helpers";
+import { ROWS } from "./helpers";
 import { useState } from "react";
 import Link from "next/link";
+import { Song } from "@/validators/song.validator";
+import { getYouTubeVideoId } from "@/utils/youtube.utils";
 
-export default function SongsTable() {
-  const [selectedSong, setSelectedSong] = useState<(typeof SONGS)[0] | null>(
+export default function SongsTable({ songs }: { songs: Song[] }) {
+  const [selectedSong, setSelectedSong] = useState<(typeof songs)[0] | null>(
     null
   );
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const rows = [
-    "Song Name",
-    "Key",
-    "Tempo",
-    "Chords",
-    "Chord Progression",
-    "YouTube",
-  ];
-
-  // Helper function to extract YouTube video ID from URL
-  const getYouTubeVideoId = (url: string) => {
-    const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-  };
-
-  const handleRowClick = (song: (typeof SONGS)[0]) => {
+  const handleRowClick = (song: (typeof songs)[0]) => {
     setSelectedSong(song);
     setIsDialogOpen(true);
   };
@@ -52,7 +38,7 @@ export default function SongsTable() {
         <TableCaption>Click any row to see more details.</TableCaption>
         <TableHeader>
           <TableRow>
-            {rows.map((header, index) => (
+            {ROWS.map((header, index) => (
               <TableHead key={index} className={index === 0 ? "" : ""}>
                 {header}
               </TableHead>
@@ -60,7 +46,7 @@ export default function SongsTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {SONGS.map((song) => (
+          {songs.map((song) => (
             <TableRow
               key={song.id}
               className="cursor-pointer hover:opacity-90 transition-colors"
@@ -87,8 +73,8 @@ export default function SongsTable() {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={rows.length - 1}>Total Songs</TableCell>
-            <TableCell className="text-right">{SONGS.length}</TableCell>
+            <TableCell colSpan={ROWS.length - 1}>Total Songs</TableCell>
+            <TableCell className="text-right">{songs.length}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

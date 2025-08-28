@@ -1,6 +1,8 @@
 import { getAlbum } from "@/actions/albums";
+import { getAlbumArtists } from "@/actions/artists";
 import BackButton from "@/components/Dumb/Button/BackButton";
 import SongsTable from "@/components/Dumb/Table/SongsTable";
+import SongsTableContainer from "@/components/Dumb/Table/SongsTableContainer";
 import AlbumHero from "@/components/Screens/Albums/[id]/AlbumHero";
 
 export const revalidate = 300;
@@ -16,7 +18,7 @@ export default async function IndividualAlbum({
   if (!albumRes.success) return <div>Error</div>;
   const album = albumRes.value;
 
-  const artists = ["Gunna", "Roddy Rhicch"];
+  const artists = await getAlbumArtists(album.artistIds);
   return (
     <div className="mx-auto max-w-6xl">
       <div>
@@ -28,7 +30,7 @@ export default async function IndividualAlbum({
         title={album.title}
       />
 
-      <SongsTable />
+      <SongsTableContainer songIds={album.songIds} />
     </div>
   );
 }
