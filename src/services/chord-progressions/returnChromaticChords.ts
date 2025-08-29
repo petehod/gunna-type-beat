@@ -1,5 +1,5 @@
-import { chromaticKeys } from "./notesInKeys.js";
-import { NumeralInfo } from "./numeralMappings.js";
+import { chromaticKeys } from "./notesInKeys";
+import { NumeralInfo } from "./numeralMappings";
 
 export function getChromaticChords(
   number: NumeralInfo,

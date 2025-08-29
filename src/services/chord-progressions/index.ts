@@ -1,10 +1,10 @@
-import { getChromaticChords } from "./returnChromaticChords.js";
-import { KeyNames, majorKeys, minorKeys } from "./notesInKeys.js";
-import { getNumeralInfo } from "./numeralMappings.js";
+import { getChromaticChords } from "./returnChromaticChords";
+import { type KeyNames, majorKeys, minorKeys } from "./notesInKeys";
+import { getNumeralInfo } from "./numeralMappings";
 import {
   ChordProgression,
   ProgressionInAllKeys,
-} from "@/validators/chordProgression.validator.js";
+} from "@/validators/chordProgression.validator";
 
 /**
  *  Returns the chord progression in all keys based upon `numerals` and `is_major`

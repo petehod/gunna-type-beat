@@ -11,7 +11,7 @@ export default function Albums() {
   return (
     <div className="h-full items-center justify-center flex mx-auto max-w-6xl py-12">
       <Suspense fallback={<Skeleton className="min-h-screen w-full" />}>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ">
           {albums?.success &&
             albums.value.map((album) => (
               <AlbumCard key={album.id} album={album} />

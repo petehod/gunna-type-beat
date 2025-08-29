@@ -23,7 +23,7 @@ export const majorNumeralMap: Record<string, NumeralInfo> = {
   vi: { index: 6, numeral: "vi", is_diatonic: true, chordSuffix: "-" },
   bVII: { index: 10, numeral: "bVII", is_diatonic: false, chordSuffix: "" },
   "vii°": { index: 7, numeral: "vii°", is_diatonic: true, chordSuffix: "°" },
-  vii: { index: 10, numeral: "vii", is_diatonic: false, chordSuffix: "-" }
+  vii: { index: 10, numeral: "vii", is_diatonic: false, chordSuffix: "-" },
 };
 
 export const minorNumeralMap: Record<string, NumeralInfo> = {
@@ -42,7 +42,7 @@ export const minorNumeralMap: Record<string, NumeralInfo> = {
   bVII: { index: 7, numeral: "bVII", is_diatonic: true, chordSuffix: "" },
   bvii: { index: 10, numeral: "bvii", is_diatonic: false, chordSuffix: "-" },
   "vii°": { index: 11, numeral: "vii°", is_diatonic: false, chordSuffix: "°" },
-  VII: { index: 11, numeral: "VII", is_diatonic: false, chordSuffix: "" }
+  VII: { index: 11, numeral: "VII", is_diatonic: false, chordSuffix: "" },
 };
 
 export function getNumeralInfo(
