@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 
 import {
@@ -12,12 +13,16 @@ import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 import { NAV_LINKS, SOCIALS } from "@/constants/socials";
+import { useState } from "react";
 
 export default function MobileMenu() {
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+  const toggleOpen = () => setIsOpen((prev) => !prev);
+
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <button className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
           <Menu className="h-6 w-6" />
@@ -44,6 +49,7 @@ export default function MobileMenu() {
                 )}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
+                onClick={toggleOpen}
               >
                 {link.text}
               </Link>
@@ -51,7 +57,7 @@ export default function MobileMenu() {
           })}
           <div className="flex mt-24 gap-4 px-2">
             {SOCIALS.map((social) => (
-              <Link target="__blank" key={social.href} href={social.href}>
+              <Link key={social.href} target="__blank" href={social.href}>
                 {social.icon}
               </Link>
             ))}

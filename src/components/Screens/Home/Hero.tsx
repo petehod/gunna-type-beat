@@ -7,11 +7,9 @@ export default function Hero() {
   return (
     <div className="mx-auto max-w-6xl min-h-[600px] flex flex-col lg:flex-row items-center gap-12">
       <div className="flex flex-col basis-1/2">
-        <CText weight="bold" classStyles="mb-4">
-          GUNNA TYPE BEAT
-        </CText>
         <CText as="h1" size="4xl" classStyles="text-5xl mb-6">
-          Learn the Secrets Behind Your Favorite Artist&apos;s Hit Songs
+          Learn the Secrets Behind Your Favorite Artist&apos;s{" "}
+          <span className="underline">Hit</span> Songs
         </CText>
         <CText as="p" size="lg">
           Stop guessing. Start stealing REAL data from REAL songs
