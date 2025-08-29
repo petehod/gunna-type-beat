@@ -1,10 +1,10 @@
-import type {
-  CFontFamily,
-  CFontWeights,
+import {
   CTextAs,
   CTextColors,
   CTextSize,
-} from "@/types/text.types";
+  CFontWeights,
+  CFontFamily,
+} from "./text.types";
 
 export function getDefaultTextStyles(as: CTextAs) {
   let styles;
