@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  allowedDevOrigins: ["https://ox-vocal-finch.ngrok-free.app"],
 };
 
 export default nextConfig;

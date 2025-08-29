@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AppProviders from "@/context/AppProviders";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -38,6 +39,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <GoogleTagManager gtmId={process.env.GTM_ID!} />
+
       <body className={`${poppins.variable}`} suppressHydrationWarning>
         <AppProviders>
           <div className="px-6 xl:px-0 pb-24">
