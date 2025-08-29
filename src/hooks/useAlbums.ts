@@ -1,5 +1,6 @@
+import { HOUR, DAY } from "@/constants/time.constants";
 import { AlbumService } from "@/services/firebase/albums";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const useAlbum = (id: string) => {
   const {
@@ -7,10 +8,10 @@ export const useAlbum = (id: string) => {
     isLoading,
     isError,
   } = useSuspenseQuery({
-    queryKey: [id],
+    queryKey: ["id", { id }],
     queryFn: () => AlbumService.getAlbum(id),
-    staleTime: 1000 * 60 * 60,
-    gcTime: 1000 * 60 * 60,
+    staleTime: HOUR,
+    gcTime: DAY,
   });
 
   return { album, isLoading, isError };
@@ -24,8 +25,8 @@ export const useAlbums = () => {
   } = useSuspenseQuery({
     queryKey: ["albums"],
     queryFn: () => AlbumService.getAlbums(),
-    staleTime: 1000 * 60 * 60,
-    gcTime: 1000 * 60 * 60,
+    staleTime: HOUR,
+    gcTime: DAY,
   });
 
   return { albums, isLoading, isError };

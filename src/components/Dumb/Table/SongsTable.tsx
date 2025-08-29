@@ -35,7 +35,7 @@ export default function SongsTable({ songs }: { songs: Song[] }) {
     setIsDialogOpen(true);
   };
 
-  const progressions = useChordProgressionByIds(
+  const { chordProgressions } = useChordProgressionByIds(
     songs.flatMap((song) => song.progressionIds)
   );
 
@@ -64,8 +64,8 @@ export default function SongsTable({ songs }: { songs: Song[] }) {
               <TableCell>{song.tempo} BPM</TableCell>
               <TableCell>{formatChordProgression(song.chords)}</TableCell>
               <TableCell>
-                {progressions?.success &&
-                  progressions?.value
+                {chordProgressions?.success &&
+                  chordProgressions?.value
                     ?.find((progression) =>
                       song.progressionIds.includes(progression.id)
                     )
@@ -168,8 +168,8 @@ export default function SongsTable({ songs }: { songs: Song[] }) {
                     Numerals
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {progressions?.success &&
-                      progressions?.value
+                    {chordProgressions?.success &&
+                      chordProgressions?.value
                         ?.find((progression) =>
                           selectedSong.progressionIds.includes(progression.id)
                         )

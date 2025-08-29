@@ -1,8 +1,18 @@
-import { getProgressionsByIds } from "@/actions/chord-progressions";
-import useSWR from "swr";
+import { DAY } from "@/constants/time.constants";
+import { ChordProgressionService } from "@/services/firebase/chord-progressions";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 export const useChordProgressionByIds = (ids: string[]) => {
-  const { data } = useSWR(ids, getProgressionsByIds);
+  const {
+    data: chordProgressions,
+    isLoading,
+    isError,
+  } = useSuspenseQuery({
+    queryKey: ["ids", { ids }],
+    queryFn: () => ChordProgressionService.getProgressionsByIds(ids),
+    staleTime: DAY,
+    gcTime: DAY,
+  });
 
-  return data;
+  return { chordProgressions, isLoading, isError };
 };

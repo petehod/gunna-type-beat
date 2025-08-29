@@ -1,11 +1,17 @@
-import { getSongsByIds } from "@/actions/songs";
+import { Suspense } from "react";
 import SongsTable from "./SongsTable";
+import { useGetSongsByIds } from "@/hooks/useSongs";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export default async function SongsTableContainer({
+export default function SongsTableContainer({
   songIds,
 }: {
   songIds: string[];
 }) {
-  const songs = await getSongsByIds(songIds);
-  return <SongsTable songs={songs} />;
+  const { songs } = useGetSongsByIds(songIds);
+  return (
+    <Suspense fallback={<Skeleton />}>
+      <SongsTable songs={songs} />
+    </Suspense>
+  );
 }

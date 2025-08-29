@@ -5,7 +5,7 @@ import AlbumHero from "@/components/Screens/Albums/[id]/AlbumHero";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAlbum } from "@/hooks/useAlbums";
 import { useAlbumArtists } from "@/hooks/useArtists";
-import { use } from "react";
+import { Suspense, use } from "react";
 
 // export const revalidate = 3600;
 // export const dynamic = "force-dynamic";
@@ -23,32 +23,24 @@ export default function IndividualAlbum({
     album?.success ? album.value.artistIds : undefined
   );
 
-  const areQueriesLoading = isAlbumArtistsLoading || isAlbumLoading;
-
-  const data = album?.success && artists;
   return (
     <div className="mx-auto max-w-6xl min-h-screen">
       <div>
         <BackButton />
       </div>
 
-      {areQueriesLoading ? (
-        <Skeleton />
-      ) : (
-        <>
-          {data && (
-            <>
-              <AlbumHero
-                artists={artists}
-                src={album.value.artworkPath ?? ""}
-                title={album.value.title}
-              />
-
-              {/* <SongsTableContainer songIds={album.value.songIds} /> */}
-            </>
-          )}
-        </>
-      )}
+      <Suspense fallback={<Skeleton className="w-full md:w-[20rem] my-4" />}>
+        {album.success && (
+          <>
+            <AlbumHero
+              artists={artists}
+              src={album.value.artworkPath ?? ""}
+              title={album.value.title}
+            />
+            <SongsTableContainer songIds={album.value.songIds} />
+          </>
+        )}
+      </Suspense>
     </div>
   );
 }
