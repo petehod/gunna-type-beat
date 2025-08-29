@@ -31,7 +31,7 @@ export default function RootLayout({
 
       <body className={`${poppins.variable}`} suppressHydrationWarning>
         <AppProviders>
-          <div className="px-6 xl:px-0 pb-24">
+          <div className="px-6 xl:px-0 pb-24 min-h-screen">
             <Header />
             {children}
           </div>
