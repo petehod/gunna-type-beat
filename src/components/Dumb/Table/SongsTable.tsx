@@ -43,7 +43,9 @@ export default function SongsTable({ songs }: { songs: Song[] }) {
   return (
     <>
       <Table className="overflow-scroll w-full">
-        <TableCaption>Click any row to see more details.</TableCaption>
+        <TableCaption className="text-left lg:text-center">
+          Click any row to see more details.
+        </TableCaption>
         <TableHeader>
           <TableRow>
             {ROWS.map((header, index) => (
@@ -90,8 +92,7 @@ export default function SongsTable({ songs }: { songs: Song[] }) {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={ROWS.length - 1}>Total Songs</TableCell>
-            <TableCell className="text-right">{songs.length}</TableCell>
+            <TableCell colSpan={1}>Total Songs: {songs.length}</TableCell>
           </TableRow>
         </TableFooter>
       </Table>

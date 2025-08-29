@@ -9,9 +9,9 @@ export default function Logo({ imageStyles, ...rest }: Props) {
     <Image
       src={"/assets/logo/logo.png"}
       alt="guitar loop god logo"
-      height={1000}
-      width={1000}
-      className={cn("w-full h-[2rem]", imageStyles)}
+      height={400}
+      width={400}
+      className={cn("w-[12rem] h-[2rem] object-cover", imageStyles)}
       {...rest}
     />
   );

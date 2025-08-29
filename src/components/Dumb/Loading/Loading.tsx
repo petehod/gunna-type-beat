@@ -1,9 +1,9 @@
-import { PacmanLoader } from "react-spinners";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
   return (
     <main className="min-h-screen flex items-center justify-center">
-      <PacmanLoader color="#fff" />
+      <Skeleton />
     </main>
   );
 }

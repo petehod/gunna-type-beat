@@ -13,23 +13,11 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Gunna Type Beat - Premium Hip Hop Beats & Instrumentals",
+  title: "Gunna Type Beat - Target Your Favorite Artist's Sounds",
   description:
-    "Discover high-quality Gunna type beats, trap instrumentals, and hip hop beats for sale. Professional music production with exclusive licensing options.",
+    "Analyze song data from top artists to uncover trends, chord progressions, and musical elements. Empowering music producers to create beats and instrumentals that match the signature sound of your favorite artists.",
   keywords:
-    "gunna type beat, trap beats, hip hop instrumentals, rap beats, music production",
-  openGraph: {
-    title: "Gunna Type Beat - Premium Hip Hop Beats & Instrumentals",
-    description:
-      "Discover high-quality Gunna type beats, trap instrumentals, and hip hop beats for sale. Professional music production with exclusive licensing options.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Gunna Type Beat - Premium Hip Hop Beats & Instrumentals",
-    description:
-      "Discover high-quality Gunna type beats, trap instrumentals, and hip hop beats for sale.",
-  },
+    "song analysis, artist data, music production, chord progressions, producer tools, beat making, music analytics, target artist sound, melody analysis, hip hop production, trap beats, songwriting tools",
 };
 
 export default function RootLayout({
