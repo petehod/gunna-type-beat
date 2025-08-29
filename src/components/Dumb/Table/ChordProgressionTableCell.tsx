@@ -1,4 +1,4 @@
-import { useChordProgressionByIds } from "@/hooks/chord-progressions/useChordProgressions";
+import { useChordProgressionByIds } from "@/hooks/useChordProgressions";
 import { TableCell } from "@/components/ui/table";
 
 export const ChordProgressionTableCell = ({ ids }: { ids: string[] }) => {

@@ -21,7 +21,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Song } from "@/validators/song.validator";
 import { getYouTubeVideoId } from "@/utils/youtube.utils";
-import { useChordProgressionByIds } from "@/hooks/chord-progressions/useChordProgressions";
+import { useChordProgressionByIds } from "@/hooks/useChordProgressions";
 import { formatChordProgression } from "@/utils/chord-progression.utils";
 
 export default function SongsTable({ songs }: { songs: Song[] }) {
