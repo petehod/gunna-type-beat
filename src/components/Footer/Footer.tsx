@@ -83,7 +83,7 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Meloroids LLC. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-sm text-muted-foreground">
+            {/* <div className="flex space-x-6 text-sm text-muted-foreground">
               <Link
                 href="/privacy"
                 className="hover:text-foreground transition-colors"
@@ -96,7 +96,7 @@ export default function Footer() {
               >
                 Terms of Service
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
